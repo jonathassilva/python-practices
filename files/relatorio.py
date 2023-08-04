@@ -34,3 +34,4 @@ for usuario in espaçoU:
     espaço_bytes = round(conversor_de_bytes(int(espaçoU[usuario]), 2), 2)
     percentual_de_uso = round(get_percentual_de_uso(int(espaçoU[usuario]), espaçoT), 2)
     print("{}    {}{} MB{}{}%".format(cont, usuario + " "*int(15-len(usuario)), espaço_bytes, " "*int((18-len(str(espaço_bytes)))), percentual_de_uso))
+    cont += 1
