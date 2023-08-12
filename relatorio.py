@@ -1,34 +1,40 @@
 from typing import TextIO
 
+# Aluno: Carlos Eduardo
 
-def gera_Relatorio(file: TextIO, dados: list,
-                   pos: int, tamanho_total: float) -> None:
-    per = 100 * (float(dados[1]) / tamanho_total)
-    t = len(dados[0])
-    nome = f"{pos}    " + dados[0] + (' ' * (15 - t))
-    mem = float(dados[1]) / (1024 ** 2)
-    string = f"{nome}"
-    string += f" {mem:1.2f} MB"
-    string += "             " + f"{per:1.2f}\n"
-    file.write(string)
+    
+def gera_Relatorio(file: TextIO, users: list,
+                   memory: int, total: float) -> None:
+    for i in range(0, len(users)):
+        espacoMB = memory[i] / (1024.0 * 1024.0)
+        percentUse = memory[i] / total
+        file.write(f'\n{i + 1}    {users[i]:<15}{espacoMB:>7.2f}'
+                   + f' MB{percentUse * 100.0:>18.2f}%')
+
+    file.write('\n\nEspaco total ocupado: %.2f MB' %
+               (total / (1024.0 * 1024.0)))
+    file.write('\nEspaco medio ocupado: %.2f MB' %
+               (total / len(users) / (1024.0 * 1024.0)))
 
 
 with open("usuarios.txt", encoding='utf-8') as file:
-    i = 0
-    tamanhoT = 0
-    with open('relatorio.txt', "w", encoding='utf-8') as dest:
-        dest.write("ACME Inc.               Uso do espaço" +
-                   "em disco pelos usuários\n" +
-                   "-------------------------------------" +
-                   "-----------------------------------\n" +
-                   "Nr.  Usuário        Espaço utilizado     % do uso\n\n")
 
-        for line in file:
-            data = line.split()
-            tamanhoT += float(data[1])
-            i += 1
-            gera_Relatorio(dest, data, i, tamanhoT)
+    lines = file.readlines()
+    users = []
+    memory = []
+    total = 0
+    for x in lines:
+        line = x.split()
+        users.append(line[0])
+        memory.append(int(line[1]))
+    total = sum(memory)
 
-        dest.write(f"Espaço total ocupado: {tamanhoT/(1024 ** 2):.2f} MB\n"
-                   + "Espaço médio ocupado: "
-                   + f"{tamanhoT/((1024 ** 2)*i):.2f} MB")
+    arquivoRelatorio = open('relatorio.txt', 'w')
+    arquivoRelatorio.write(
+        'ACME Inc.               Uso do espaco em disco pelos usuarios\n')
+    arquivoRelatorio.write(72 * '-')
+    arquivoRelatorio.write(
+        '\nNr.  Usuario        Espaco utilizado     %% do uso')
+    gera_Relatorio(arquivoRelatorio, users, memory, total)
+
+    arquivoRelatorio.close()
