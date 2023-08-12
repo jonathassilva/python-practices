@@ -2,7 +2,7 @@ from typing import TextIO
 
 # Aluno: Carlos Eduardo
 
-    
+
 def gera_Relatorio(file: TextIO, users: list,
                    memory: int, total: float) -> None:
     for i in range(0, len(users)):
