@@ -35,7 +35,7 @@ if os.path.exists("usuarios.txt"):
         arquivo_relatorio.write(percentual(int(tamanho), espaco_total).rjust(7)+"%\n")
     arquivo_relatorio.write("\nEspaço total ocupado: " + bytes_to_mb(espaco_total) + "MB\n")
     arquivo_relatorio.write("Espaço médio ocupado: " + bytes_to_mb(espaco_total/len(usuarios_tamanhos)) + "MB")
-                            
+    arquivo_relatorio.close()              
 
 else:
     print("Arquivo não encontrado!")
