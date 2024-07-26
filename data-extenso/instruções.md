@@ -7,4 +7,6 @@ Construa uma função que receba uma data no formato DD/MM/AAAA e devolva uma st
 - Cria um Pull Request com as suas modificações;
 
 ## Lista dos alunos que contribuiram
-- Jonathas Santos, Eduardo Correa
+- Jonathas Santos
+- Guilherme Moraes
+- Eduardo Correa
