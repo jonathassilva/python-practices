@@ -9,3 +9,5 @@ Construa uma função que receba uma data no formato DD/MM/AAAA e devolva uma st
 ## Lista dos alunos que contribuiram
 - Jonathas Santos
 -Pedro Vitor 
+- Guilherme Moraes
+
